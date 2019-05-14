@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../interfaces/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -8,7 +9,7 @@ import { User } from '../interfaces/user';
 })
 export class HomePage implements OnInit {
   friends: User[];
-  constructor (){
+  constructor (private router: Router){
     let myUser: User = {
       nick: 'Jorge Martínez',
       subnick: 'jorgeme0996',
@@ -32,8 +33,8 @@ export class HomePage implements OnInit {
       subnick: 'liss_alq',
       email: 'liss@gmail.com',
       age: 22,
-      friend: false,
-      uid: 2
+      friend: true,
+      uid: 3
     }
 
     let ususario3: User = {
@@ -42,7 +43,7 @@ export class HomePage implements OnInit {
       email: 'carmen@gmail.com',
       age: 54,
       friend: false,
-      uid: 2
+      uid: 4
     }
 
     let ususario4: User = {
@@ -50,15 +51,20 @@ export class HomePage implements OnInit {
       subnick: 'ema_tu',
       email: 'emma@gmail.com',
       age: 23,
-      friend: false,
+      friend: true,
       uid: 2
     }
 
     this.friends = [ususario1, ususario2, ususario3, ususario4]
   }
 
+  
   ngOnInit(){
 
+  }
+
+  goToConversation(id) {
+    this.router.navigate(['/conversation', id])
   }
 
 }

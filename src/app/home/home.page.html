@@ -10,11 +10,31 @@
 </ion-header>
 
 <ion-content>
-    <ion-card *ngFor="let friend of friends; let i = index">
+
+  <ion-toolbar color="primary">
+    <ion-title>Amigos: </ion-title>
+  </ion-toolbar>
+
+    <ng-container *ngFor="let friend of friends; let i = index">
+      <ion-card *ngIf="friend.friend" (click)="goToConversation(friend.uid)">
         <ion-card-header>
           <ion-card-subtitle>@{{friend.subnick}}</ion-card-subtitle>
-          <ion-card-title>{{i}} - {{friend.nick}}</ion-card-title>
+          <ion-card-title>{{i + 1}} - {{friend.nick}}</ion-card-title>
         </ion-card-header>
-      
       </ion-card>
+    </ng-container>
+
+  <ion-toolbar color="primary">
+    <ion-title>No agregados: </ion-title>
+  </ion-toolbar>
+  <ng-container *ngFor="let friend of friends; let i = index">
+    <ion-card *ngIf="!friend.friend">
+        <ion-card-header>
+          <ion-card-subtitle>@{{friend.subnick}}</ion-card-subtitle>
+          <ion-card-title>{{i + 1}} - {{friend.nick}}</ion-card-title>
+        </ion-card-header>
+      </ion-card>
+  </ng-container>
+  
+    
 </ion-content>
